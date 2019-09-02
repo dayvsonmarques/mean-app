@@ -3,7 +3,7 @@ path = require('path'),
 mongoose = require('mongoose'),
 cors = require('cors'),
 bodyParser = require('body-parser'),
-dataBaseConfig = require('./database/db');
+dataBaseConfig = require('./db');
 
 //Connecting MongoDB
 mongoose.Promise = global.Promise;

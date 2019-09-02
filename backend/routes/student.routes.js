@@ -28,7 +28,7 @@ studentRoutes.route('/').get((req, res) => {
 });
 
 //Get Single Student
-studentRoute.route('/read-student/:id').get((req, res) => {
+studentRoutes.route('/read-student/:id').get((req, res) => {
   Student.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error);
@@ -39,7 +39,7 @@ studentRoute.route('/read-student/:id').get((req, res) => {
 });
 
 // Update student
-studentRoute.route('/update-student/:id').put((req, res, next) => {
+studentRoutes.route('/update-student/:id').put((req, res, next) => {
   Student.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, (error, data) => {
@@ -53,7 +53,7 @@ studentRoute.route('/update-student/:id').put((req, res, next) => {
   });
 });
 
-studentRoute.route('/delete-student/:id').delete((req, res, next) => {
+studentRoutes.route('/delete-student/:id').delete((req, res, next) => {
   Student.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
@@ -65,4 +65,4 @@ studentRoute.route('/delete-student/:id').delete((req, res, next) => {
   });
 });
 
-module.exports = studentRoute;
+module.exports = studentRoutes;
