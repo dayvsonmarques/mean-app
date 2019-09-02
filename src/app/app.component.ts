@@ -9,7 +9,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 
 export class AppComponent {
   opened = true;
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
 
   ngOnInit() {
     console.log(window.innerWidth)
@@ -28,7 +28,7 @@ export class AppComponent {
       this.sidenav.fixedTopGap = 55;
       this.opened = false;
     } else {
-      this.sidenav.fixedTopGap = 55
+      this.sidenav.fixedTopGap = 55;
       this.opened = true;
     }
   }
