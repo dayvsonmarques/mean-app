@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpErrorResponse  } from '@angular/common/http';
-import { Student } from 'src/app/shared/student';
-import { Observable, throwError  } from 'rxjs';
+import { Student } from './student';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 export class ApiService {
 
   endpoint: string = "http://localhost:4000/api";
+  //endpoint: string = 'api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
@@ -18,17 +19,17 @@ export class ApiService {
   AddStudent(data: Student): Observable<any> {
     let API_URL = `${this.endpoint}/add-student`;
     return this.http.post(API_URL, data)
-    .pipe(
-      catchError(this.errorMgmt)
-    )
+      .pipe(
+        catchError(this.errorMgmt)
+      )
   }
 
-    // Get all students
-    GetStudents() {
-      return this.http.get(`${this.endpoint}`);
-    }
+  // Get all students
+  GetStudents() {
+    return this.http.get(`${this.endpoint}`);
+  }
 
-     // Get student
+  // Get student
   GetStudent(id): Observable<any> {
     let API_URL = `${this.endpoint}/read-student/${id}`;
     return this.http.get(API_URL, { headers: this.headers }).pipe(
@@ -40,8 +41,8 @@ export class ApiService {
   }
 
   // Update student
-  UpdateStudent(id, data: Student): Observable<any> {
-    let API_URL = `${this.endpoint}/update/${id}`;
+  UpdateStudent(id, data): Observable<any> {
+    let API_URL = `${this.endpoint}/update-student/${id}`;
     return this.http.put(API_URL, data, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)
     )
